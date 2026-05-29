@@ -1,17 +1,23 @@
-// API externa
+// Open Meteo API
+
 export const OPEN_METEO_BASE_URL = 'https://api.open-meteo.com/v1';
 
-// Valores por defecto
+// Default values
 export const DEFAULT_UNITS = 'metric';
 export const DEFAULT_FORECAST_DAYS = 7;
 
-// Mapeo de unidades
-export const UNIT_MAP = {
-  metric: { temp: 'celsius', wind: 'kmh', precip: 'mm' },
-  imperial: { temp: 'fahrenheit', wind: 'mph', precip: 'in' },
+// Units mapping
+export const UNITS_METRIC = 'metric';
+export const UNITS_IMPERIAL = 'imperial';
+
+export const UNITS_MAP = {
+  metric: { name: 'celsius', wind: 'kmh', precip: 'mm' },
+  imperial: { name: 'fahrenheit', wind: 'mph', precip: 'in' },
 } as const;
 
-// Parámetros de la API (campos a solicitar)
+export type UnitSystem = keyof typeof UNITS_MAP; // 'metric' | 'imperial'
+
+// API params (fields to ask for)
 export const CURRENT_FIELDS = [
   'temperature_2m',
   'apparent_temperature',
@@ -29,6 +35,9 @@ export const DAILY_FIELDS = [
   'temperature_2m_min',
 ] as const;
 
-// Configuración de red
+// Network config
 export const API_TIMEOUT_MS = 10000;
 export const MAX_RETRIES = 3;
+
+//Error messages
+export const ERROR_UNITS = 'Units must be "metric" or "imperial"'
