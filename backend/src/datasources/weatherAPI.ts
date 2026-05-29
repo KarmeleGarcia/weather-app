@@ -1,30 +1,31 @@
 import axios from 'axios';
 import { OpenMeteoResponse } from '../types/index.js';
 
-const BASE_URL =
-  process.env.WEATHER_API_BASE_URL || 'https://api.open-meteo.com/v1';
+import {
+  OPEN_METEO_BASE_URL,
+  UNITS_MAP,
+  CURRENT_FIELDS,
+  HOURLY_FIELDS,
+  DAILY_FIELDS,
+  DEFAULT_FORECAST_DAYS,
+  UnitSystem,
+} from '../constants/index.js';
 
 export async function fetchWeatherData(
   latitude: number,
   longitude: number,
-  units: string
+  units: UnitSystem
 ) {
-  // Determinar unidades según el parámetro
-  const temperatureUnit = units === 'metric' ? 'celsius' : 'fahrenheit';
-  const windSpeedUnit = units === 'metric' ? 'kmh' : 'mph';
-
-  const url = `${BASE_URL}/forecast`;
+  const url = `${OPEN_METEO_BASE_URL}/forecast`;
   const params = {
     latitude,
     longitude,
-    current:
-      'temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,precipitation,weather_code,is_day',
-    hourly: 'temperature_2m,weather_code',
-    daily: 'weather_code,temperature_2m_max,temperature_2m_min',
-    timezone: 'auto',
-    temperature_unit: temperatureUnit,
-    wind_speed_unit: windSpeedUnit,
-    forecast_days: 7,
+    current: CURRENT_FIELDS.join(','),
+    hourly: HOURLY_FIELDS.join(','),
+    daily: DAILY_FIELDS.join(','),
+    temperature_unit: UNITS_MAP[units].name,
+    wind_speed_unit: UNITS_MAP[units].wind,
+    forecast_days: DEFAULT_FORECAST_DAYS,
   };
 
   const response = await axios.get<OpenMeteoResponse>(url, { params });

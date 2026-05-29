@@ -1,15 +1,27 @@
 import { fetchWeatherData } from '../datasources/weatherAPI.js';
 import { WeatherArgs } from '../types/index.js';
+import {
+  UNITS_METRIC,
+  UNITS_IMPERIAL,
+  UnitSystem,
+  ERROR_UNITS,
+} from '../constants/index.js';
 
 export const resolvers = {
   Query: {
     getWeather: async (_: unknown, args: WeatherArgs) => {
-      const { latitude, longitude, units } = args;
+      const { latitude, longitude } = args;
 
-      // Obtener datos de la API externa
+      // Type validation and conversion
+      const units = args.units as UnitSystem;
+      if (units !== UNITS_METRIC && units !== UNITS_IMPERIAL) {
+        throw new Error(ERROR_UNITS);
+      }
+
+      // Getting data from external API
       const data = await fetchWeatherData(latitude, longitude, units);
 
-      // Transformar datos de Open-Meteo a nuestro esquema GraphQL
+      // Converting data from external API to GraphQL squeme
       const current = {
         temperature: data.current.temperature_2m,
         feelsLike: data.current.apparent_temperature,
@@ -20,7 +32,7 @@ export const resolvers = {
         isDay: data.current.is_day === 1,
       };
 
-      // Pronóstico diario (7 días)
+      // Daily forecast (7 days)
       const daily = data.daily.time.map((time, index) => ({
         date: time,
         maxTemp: data.daily.temperature_2m_max[index],
@@ -28,14 +40,14 @@ export const resolvers = {
         weatherCode: data.daily.weather_code[index],
       }));
 
-      // Pronóstico por horas (primeras 24 horas para no sobrecargar)
+      // Hourly forecast (first 24h)
       const hourly = data.hourly.time.slice(0, 24).map((time, index) => ({
         time,
         temperature: data.hourly.temperature_2m[index],
         weatherCode: data.hourly.weather_code[index],
       }));
 
-      // Por ahora, usamos coordenadas como ubicación (después podríamos geocodificar)
+      // By now, using coordenates as location (improvement: geodecode)
       const location = `${latitude},${longitude}`;
 
       return {
