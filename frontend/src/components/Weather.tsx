@@ -48,7 +48,7 @@ const Weather = ({ latitude, longitude, units }: WeatherProps) => {
 
   return (
     <div>
-      <h1>{getWeather.location}</h1>
+      <h1 className="text-3xl font-bold text-blue-600">{getWeather.location}</h1>
       <div>
         <p>
           Temperature: {getWeather.current.temperature}°

@@ -1,18 +1,17 @@
 // frontend/src/App.tsx
-import Weather from './components/Weather';
-import './App.css';
+import { UNITS_METRIC, DEFAULT_COORDINATES } from "./constants/index";
+import Weather from "./components/Weather";
 
-function App() {
-  // Madrid coordinates as default
-  const latitude = 40.4165;
-  const longitude = -3.7026;
-  const units = 'metric'; // Change to 'imperial' if needed
-
+function WeatherApp() {
   return (
-    <div className="app">
-      <Weather latitude={latitude} longitude={longitude} units={units} />
+    <div className="weather-app">
+      <Weather
+        latitude={DEFAULT_COORDINATES.lat}
+        longitude={DEFAULT_COORDINATES.lon}
+        units={UNITS_METRIC}
+      />
     </div>
   );
 }
 
-export default App;
+export default WeatherApp;
