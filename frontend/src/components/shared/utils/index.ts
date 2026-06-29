@@ -1,0 +1,1 @@
+export { getTypographyClasses } from "@/components/shared/utils/typography";

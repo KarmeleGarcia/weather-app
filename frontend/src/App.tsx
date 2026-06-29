@@ -1,17 +1,31 @@
-// frontend/src/App.tsx
-import { UNITS_METRIC, DEFAULT_COORDINATES } from "./constants/index";
-import Weather from "./components/Weather";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { I18nextProvider } from "react-i18next";
+import i18n from "./i18n/i18n";
 
-function WeatherApp() {
+import { ApolloProvider } from "@apollo/client/react";
+import client from "./graphql/apolloClient";
+
+import { MainLayout } from "@/components/layouts/MainLayout";
+import { HomePage } from "@/pages/Home/HomePage";
+import { NotFoundPage } from "@/pages/NotFound/NotFoundPage";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainLayout />,
+    children: [
+      { index: true, element: <HomePage /> },
+      { path: "*", element: <NotFoundPage /> },
+    ],
+  },
+]);
+
+export function App() {
   return (
-    <div className="weather-app">
-      <Weather
-        latitude={DEFAULT_COORDINATES.lat}
-        longitude={DEFAULT_COORDINATES.lon}
-        units={UNITS_METRIC}
-      />
-    </div>
+    <ApolloProvider client={client}>
+      <I18nextProvider i18n={i18n}>
+        <RouterProvider router={router} />
+      </I18nextProvider>
+    </ApolloProvider>
   );
 }
-
-export default WeatherApp;
