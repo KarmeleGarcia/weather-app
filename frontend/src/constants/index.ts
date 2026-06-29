@@ -1,10 +1,13 @@
 // Backend GraphQL endpoint from .env file
 export const GRAPHQL_URI = import.meta.env.VITE_GRAPHQL_URI;
 
+export const UNITS_METRIC = "metric";
+export const UNITS_IMPERIAL = "imperial";
+
 // Unit options for the selector
 export const UNITS_OPTIONS = [
-  { value: "metric", label: "°C, km/h, mm" },
-  { value: "imperial", label: "°F, mph, in" },
+  { value: UNITS_METRIC, label: "°C, km/h, mm" },
+  { value: UNITS_IMPERIAL, label: "°F, mph, in" },
 ] as const;
 
 // Default coordenates (Madrid)

@@ -1,18 +1,31 @@
-// frontend/src/App.tsx
-import Weather from './components/Weather';
-import './App.css';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { I18nextProvider } from "react-i18next";
+import i18n from "./i18n/i18n";
 
-function App() {
-  // Madrid coordinates as default
-  const latitude = 40.4165;
-  const longitude = -3.7026;
-  const units = 'metric'; // Change to 'imperial' if needed
+import { ApolloProvider } from "@apollo/client/react";
+import client from "./graphql/apolloClient";
 
+import { MainLayout } from "@/components/layouts/MainLayout";
+import { HomePage } from "@/pages/Home/HomePage";
+import { NotFoundPage } from "@/pages/NotFound/NotFoundPage";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainLayout />,
+    children: [
+      { index: true, element: <HomePage /> },
+      { path: "*", element: <NotFoundPage /> },
+    ],
+  },
+]);
+
+export function App() {
   return (
-    <div className="app">
-      <Weather latitude={latitude} longitude={longitude} units={units} />
-    </div>
+    <ApolloProvider client={client}>
+      <I18nextProvider i18n={i18n}>
+        <RouterProvider router={router} />
+      </I18nextProvider>
+    </ApolloProvider>
   );
 }
-
-export default App;

@@ -1,0 +1,57 @@
+{
+  "common.degree": "º",
+  
+  "header.unit_change.title": "Units",
+  "header.unit_change.imperial": "Switch to imperial",
+  "header.unit_change.metric": "Switch to metric",
+  "header.unit_change.imperial.temperature": "Temperature",
+  "header.unit_change.imperial.temperature.celsius": "Celsius (°C)",
+  "header.unit_change.imperial.temperature.fahrenheit": "Fahrenheit (°F)",
+  "header.unit_change.imperial.wind_speed": "Wind Speed",
+  "header.unit_change.imperial.wind_speed.kmh": "km/h",
+  "header.unit_change.imperial.wind_speed.mph": "mph",
+  "header.unit_change.imperial.precipitation": "Precipitation",
+  "header.unit_change.imperial.precipitation.mm": "Milimeters (mm)",
+  "header.unit_change.imperial.precipitation.in": "Inches (in)",
+  
+  
+  "header.heading": "How's the sky is looking today?",
+  "header.search_bar.placeholder": "Search for a place...",
+  "header.search_bar.button": "Search",
+  "header.search_bar.loading": "Loading...",
+  "header.search_bar.in_progress": "Search in progress",
+  "header.search_bar.no_results": "No search results found!",
+
+  "todays_info.feels_like": "Feels like",
+  "todays_info.humidity": "Humidity",
+  "todays_info.wind": "Wind",
+  "todays_info.wind.mph": "mph",
+  "todays_info.wind.kmh": "km/h",
+  "todays_info.precipitation": "Precipitation",
+  "todays_info.precipitation.in": "in",
+  "todays_info.precipitation.mm": "mm",
+
+  "daily_forecast.heading": "Daily forecast",
+  "daily_forecast.sun": "sun",
+  "daily_forecast.mon": "mon",
+  "daily_forecast.tue": "tue",
+  "daily_forecast.wed": "wed",
+  "daily_forecast.thu": "thu",
+  "daily_forecast.fri": "fri",
+  "daily_forecast.sat": "sat",
+
+  "hourly_forecast.heading": "Hourly forecast",
+  "hourly_forecast.sun": "Sunday",
+  "hourly_forecast.mon": "Monday",
+  "hourly_forecast.tue": "Tuesday",
+  "hourly_forecast.wed": "Wednesday",
+  "hourly_forecast.thu": "Thursday",
+  "hourly_forecast.fri": "Friday",
+  "hourly_forecast.sat": "Saturday",
+  "hourly_forecast.am": "AM",
+  "hourly_forecast.pm": "PM",
+
+  "error.message": "Something went wrong",
+  "error.submessage": "We couldn't connect to the server (API error). Please try again in a few moments.",
+  "error.button": "Retry"
+}

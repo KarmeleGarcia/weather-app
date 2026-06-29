@@ -1,5 +1,8 @@
 import { useQuery } from "@apollo/client/react";
-import { GET_WEATHER } from "../graphql/queries";
+import { GET_WEATHER } from "@/graphql/queries";
+import { UNITS_METRIC } from "@/constants";
+
+import { Heading } from "@/components/atoms/Heading/Heading";
 
 // Interfaz que describe la respuesta de la query
 interface WeatherData {
@@ -48,20 +51,20 @@ const Weather = ({ latitude, longitude, units }: WeatherProps) => {
 
   return (
     <div>
-      <h1>{getWeather.location}</h1>
+      <Heading as="h1" className="text-3xl font-bold text-blue-600">{getWeather.location}</Heading>
       <div>
         <p>
           Temperature: {getWeather.current.temperature}°
-          {units === "metric" ? "C" : "F"}
+          {units === UNITS_METRIC ? "C" : "F"}
         </p>
         <p>
           Feels like: {getWeather.current.feelsLike}°
-          {units === "metric" ? "C" : "F"}
+          {units === UNITS_METRIC ? "C" : "F"}
         </p>
         <p>Humidity: {getWeather.current.humidity}%</p>
         <p>
           Wind: {getWeather.current.windSpeed}{" "}
-          {units === "metric" ? "km/h" : "mph"}
+          {units === UNITS_METRIC ? "km/h" : "mph"}
         </p>
         <p>Precipitation: {getWeather.current.precipitation} mm</p>
       </div>
