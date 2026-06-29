@@ -8,7 +8,7 @@ export function HomePage() {
   return (
     <section className="home">
       <Heading as="h1" size="2xl" align="center">
-        { t('home.greeting') }
+        { t('header.heading') }
       </Heading>
     </section>
   );

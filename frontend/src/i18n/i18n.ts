@@ -17,4 +17,8 @@ i18n.use(initReactI18next).init({
   },
 });
 
+console.log('i18n inicializado:', i18n.isInitialized);
+console.log('Idioma activo:', i18n.language);
+console.log('Recursos:', i18n.getResourceBundle('en', 'common'));
+
 export default i18n;
