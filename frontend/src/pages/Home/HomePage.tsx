@@ -8,8 +8,10 @@ export function HomePage() {
   return (
     <section className="home">
       <Heading as="h1" size="2xl" align="center">
-        { t('header.heading') }
+        {t("header.heading")}
       </Heading>
+
+      <div className="text-3xl font-bold text-blue-500">Prueba Tailwind</div>
     </section>
   );
 }
